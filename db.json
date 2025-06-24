@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "What is HTML?",
+      "body": "HTML stands for HyperText Markup Language. It is used to create the structure of web pages."
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "title": "What is CSS?",
+      "body": "CSS is used to style HTML elements. It changes colors, sizes, and layout of web pages."
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "title": "JavaScript Basics",
+      "body": "JavaScript makes web pages interactive. For example, clicking a button or showing a popup."
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "title": "What is a Website?",
+      "body": "A website is a collection of web pages that you can visit using a browser like Chrome or Firefox."
+    },
+    {
+      "id": 5,
+      "userId": 3,
+      "title": "What is a Computer Program?",
+      "body": "A program is a set of instructions that a computer follows to do a task, like a calculator app."
+    }
+  ]
+}
