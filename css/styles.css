@@ -1,11 +1,11 @@
-/* Body styling */
+
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: #f9f9f9;
 }
 
-/* Styles the list from db */
+
 #post-list {
   margin-bottom: 30px;
 }
@@ -23,7 +23,7 @@ body {
   background-color: #f0f0f0;
 }
 
-/* Post details */
+
 #post-detail {
   border-top: 2px solid #333;
   margin-top: 20px;
@@ -32,7 +32,7 @@ body {
   padding: 15px;
 }
 
-/* Form for new post */
+
 form {
   margin-top: 30px;
   background-color: #ffffff;

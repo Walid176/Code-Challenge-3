@@ -1,67 +1,76 @@
 const url = "http://localhost:3000/posts";
 
-// Show all posts
-function showPosts() {
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("new-post-form");
+  loadPosts();
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const title = document.getElementById("title").value;
+    const body = document.getElementById("body").value;
+    const image = document.getElementById("img-link").value;
+    const postId = form.getAttribute("data-id");
+
+    const post = { title, body, image };
+    const method = postId ? "PUT" : "POST";
+    const endpoint = postId ? `${url}/${postId}` : url;
+
+    fetch(endpoint, {
+      method: method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(post)
+    }).then(() => {
+      form.reset();
+      form.removeAttribute("data-id");
+      loadPosts();
+    });
+  });
+});
+
+function loadPosts() {
   fetch(url)
     .then(res => res.json())
-    .then(data => {
-      const list = document.getElementById("post-list");
-      list.innerHTML = "";
+    .then(posts => {
+      const postList = document.getElementById("post-list");
+      postList.innerHTML = "";
 
-      data.forEach(post => {
-        const item = document.createElement("div");
-        item.className = "post";
-        item.innerHTML = `<h3>${post.title}</h3>`;
-
-        item.addEventListener("click", () => {
-          showPostDetail(post.id);
-        });
-
-        list.appendChild(item);
+      posts.forEach(post => {
+        const box = document.createElement("div");
+        box.innerHTML = `
+          <h3 onclick="showPost(${post.id})">${post.title}</h3>
+          <button onclick="editPost(${post.id})">Edit</button>
+          <button onclick="deletePost(${post.id})">Delete</button>
+        `;
+        postList.appendChild(box);
       });
     });
 }
 
-// Show one post when clicked
-function showPostDetail(id) {
+function showPost(id) {
   fetch(`${url}/${id}`)
     .then(res => res.json())
     .then(post => {
       const detail = document.getElementById("post-detail");
       detail.innerHTML = `
         <h2>${post.title}</h2>
+        ${post.image ? `<img src="${post.image}" style="max-width:100%;"><br>` : ""}
         <p>${post.body}</p>
       `;
     });
 }
 
-// Add a new post
-function setupForm() {
-  const form = document.getElementById("new-post-form");
-
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-
-    const title = document.getElementById("title").value;
-    const body = document.getElementById("body").value;
-
-    const post = {
-      title: title,
-      body: body
-    };
-
-    const list = document.getElementById("post-list");
-    const item = document.createElement("div");
-    item.className = "post";
-    item.innerHTML = `<h3>${post.title}</h3>`;
-    list.appendChild(item);
-
-    form.reset();
-  });
+function editPost(id) {
+  fetch(`${url}/${id}`)
+    .then(res => res.json())
+    .then(post => {
+      document.getElementById("title").value = post.title;
+      document.getElementById("body").value = post.body;
+      document.getElementById("img-link").value = post.image;
+      document.getElementById("new-post-form").setAttribute("data-id", post.id);
+    });
 }
 
-// Run this when page is ready
-document.addEventListener("DOMContentLoaded", () => {
-  showPosts();
-  setupForm();
-});
+function deletePost(id) {
+  fetch(`${url}/${id}`, { method: "DELETE" }).then(loadPosts);
+}
