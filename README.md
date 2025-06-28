@@ -10,7 +10,8 @@ It lets you:
 
  View a list of blog post titles  
  Click a title to see full content  
- Add a new post using a form (not saved permanently)
+ Add a new post using a form
+ Edit or delete an existing form
 
 Authored by;
 Walid Khalid
