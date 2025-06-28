@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Simple Blog</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Manager</title>
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-
-  <h1>My Blog</h1>
-
-  <div id="post-list"></div>
-
-  <div id="post-detail">
-  <div id="post-image"></div></div>
-<form id="new-post-form">
-  <h2>Add New Post</h2>
-  <input type="text" id="title" placeholder="Title" required>
-  <input type="link" id="img-link" placeholder="Image link">
-  <textarea id="body" placeholder="Post content..." required></textarea>
-  <button type="submit">Post</button>
+  <h1>Blog Post Manager</h1>
+<form id="post-form">
+  <input type="text" id="title" placeholder="Title">
+  <input type="text" id="content" placeholder="Content">
+  <input type="text" id="image" placeholder="Image URL">
+  <button type="submit">Add Post</button>
 </form>
 
+<div id="posts-container"></div>
 
 
-  <script src="src/index.js"></script>
+  <script src="./src/index.js"></script>
 </body>
 </html>
